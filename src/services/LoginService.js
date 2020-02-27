@@ -2,9 +2,7 @@ import axios from 'axios';
 
 class LoginService {
     constructor(){
-        this.PORT = 8001;
-        this.base_url = `http://192.168.0.12:${this.PORT}/`;
-        // TODO: move to an ENV or config.json
+        this.base_url = (process.env.SERVER_URL || 'http://localhost:8001/');
     }
 
     userLogin(nickname, success,fail) {

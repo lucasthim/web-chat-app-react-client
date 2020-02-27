@@ -4,8 +4,8 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 
-import authenticationService from '../../resources/AuthenticationService';
-import LoginService  from "../../resources/LoginService";
+import authenticationService from '../../services/AuthenticationService';
+import LoginService  from "../../services/LoginService";
 import NickName from './Nickname/Nickname';
 
 class Landing extends Component {
@@ -51,8 +51,8 @@ class Landing extends Component {
         (error) => {
             this.setState({
             isLoaded: true,
-            nicknameAlreadyChosen: true,
-            error
+            nicknameAlreadyChosen: false,
+            error: true
             });
         });
     }
@@ -72,7 +72,9 @@ class Landing extends Component {
                 emitNickname = {this.saveNickname}
                 emitCloseDialog = {this.closeDialog}
                 showDialog = {this.state.showDialog}
-                nicknameAlreadyChosen = {this.state.nicknameAlreadyChosen}/>
+                nicknameAlreadyChosen = {this.state.nicknameAlreadyChosen}
+                saveNicknameError = {this.state.error}
+                />
                 <Grid
                 container
                 spacing={0}
@@ -81,7 +83,6 @@ class Landing extends Component {
                 justify="center"
                 style={{ minHeight: '100vh' }}>
                     <Grid item xs={6}>
-                        {/* <Typography component="div" style={{ height: '70vh',margin:'2vh 0 1vh 0' }}> */}
                         <Typography variant="h5" align="center" color="primary" gutterBottom>
                             Ready to meet some really cool people and have a great time?
                         </Typography>

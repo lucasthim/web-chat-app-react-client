@@ -7,9 +7,9 @@ import MessageBox  from "./MessageBox/MessageBox";
 import Messages from './Messages/Messages';
 import Message from './Messages/Message';
 
-import authenticationService from '../../resources/AuthenticationService';
-import LoginService  from "../../resources/LoginService";
-import Socket  from "../../resources/Socket";
+import authenticationService from '../../services/AuthenticationService';
+import LoginService  from "../../services/LoginService";
+import Socket  from "../../services/Socket";
 
 class Chat extends Component {
     constructor() {
@@ -92,7 +92,7 @@ class Chat extends Component {
     render() {
         return (
             <div>
-            <Container maxWidth="sm" >
+            <Container maxWidth="md" >
                 <Typography variant="h4" align="center" color="textSecondary" gutterBottom>Super Cool Chat App</Typography>
                 <Messages messages = {this.state.messages}/>
                 <MessageBox emitLogout = {this.logout}

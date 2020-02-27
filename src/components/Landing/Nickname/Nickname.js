@@ -14,7 +14,9 @@ class NickName extends Component {
         super();
         this.state = {
             currentNickname: '',
-            nickNameEmpty: false
+            nickNameEmpty: false,
+            saveNicknameError:false,
+            nicknameAlreadyChosen: false
         };
 
     }
@@ -38,7 +40,7 @@ class NickName extends Component {
     }
 
     showWarningServer() {
-      return (this.props.error ?
+      return (this.props.saveNicknameError ?
           <Typography variant="caption" align="center" color="error" gutterBottom>
               Cannot enter chat room right now. Try again later.
           </Typography> : null);
