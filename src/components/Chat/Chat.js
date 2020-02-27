@@ -20,31 +20,38 @@ class Chat extends Component {
             sessionNickname: authenticationService.authUser,
             messages: []
         }
-        //TODO: Add method to handle reload F5 and first loading. 
-        // if (window.performance) {
-        //     if (performance.navigation.type === 1) {
-        //         console.log( "This page is reloaded" );
-        //     } else  {
-        //         console.log( "This page is not reloaded" );
-        //     }
-        // }
+
+        window.addEventListener("beforeunload", (ev) => 
+        {  
+            ev.preventDefault();
+            const logoutMessage = new Message(
+                `${this.state.sessionNickname} has left the room.`,
+                this.state.sessionNickname,
+                false,
+                true);
+            this.socket.emitEvent('sendMessage',logoutMessage);
+        });
     }
 
     componentDidMount() {
-        this.socket.emitEvent('loadMessages');
-
-        this.socket.listenOn('loadMessages',this.loadMessages);
-        this.socket.listenOn('newMessage',this.loadNewMessage);
-
         this.socket.emitEvent('userConnected', new Message(
             `${this.state.sessionNickname} has joined the room.`,
             this.state.sessionNickname,
             false,
             true));
+
+        this.socket.emitEvent('loadMessages');
+
+        this.socket.listenOn('loadMessages',this.loadMessages);
+        this.socket.listenOn('newMessage',this.loadNewMessage);
+
+    }
+
+    isPageReloading() {
+        return window.performance && performance.navigation.type === 1
     }
 
     loadMessages = (messages) => {
-        console.log(messages)
         this.setState({messages:messages});
     }
 
@@ -61,12 +68,6 @@ class Chat extends Component {
 
     logout = () => {
 
-        // const logoutMessage = new Message(
-        //     `${this.state.sessionNickname} has left the room.`,
-        //     this.state.sessionNickname,
-        //     false,
-        //     true);
-        // this.socket.emitEvent('sendMessage',logoutMessage);
         this.loginService.userLogout(this.state.sessionNickname,
             (response) => {
                 authenticationService.logout(

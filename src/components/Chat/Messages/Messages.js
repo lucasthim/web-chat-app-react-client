@@ -35,17 +35,16 @@ class Messages extends Component {
                     <React.Fragment>
                     <Typography 
                         component="div" 
-                        variant="body2" 
+                        variant="body1" 
                         color="textSecondary">
-                        {message?.user + ' [at ' + this.formatDateAndTime(message?.datetime) + ']:'}
+                        {message?.user + ' (at ' + this.formatDateAndTime(message?.datetime) + '):'}
                         </Typography> 
                     </React.Fragment>
                 }
                 // {message?.user}
                 secondary={
                 <React.Fragment>
-                    {this.formatDateAndTime(message?.datetime) + ' - '}
-                    <Typography component="span" variant="body1" color="textPrimary">
+                    <Typography component="span" variant="body2" color="textPrimary">
                         {message?.body}
                     </Typography> 
                 </React.Fragment>
