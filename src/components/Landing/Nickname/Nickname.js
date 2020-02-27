@@ -87,7 +87,7 @@ class NickName extends Component {
             </DialogContent>
             <DialogActions>
               <Button onClick={this.registerNickname} color="primary" disabled = {this.checkNicknameEmpty()}>
-                Hook Me Up!
+                Enter Chat Room!
               </Button>
             </DialogActions>
             {this.showWarningPickNickname()}
