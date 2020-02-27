@@ -31,15 +31,25 @@ class Messages extends Component {
                     <Avatar alt={message?.user} src="/"/>
                 </ListItemAvatar>
                 <ListItemText
-                    primary={message?.user}
-                    secondary={
+                primary={
                     <React.Fragment>
-                        {this.formatDateAndTime(message?.datetime) + ' - '}
-                        <Typography component="span" variant="body1" color="textPrimary">
-                            {message?.body}
+                    <Typography 
+                        component="div" 
+                        variant="body2" 
+                        color="textSecondary">
+                        {message?.user + ' [at ' + this.formatDateAndTime(message?.datetime) + ']:'}
                         </Typography> 
                     </React.Fragment>
-                    }/>
+                }
+                // {message?.user}
+                secondary={
+                <React.Fragment>
+                    {this.formatDateAndTime(message?.datetime) + ' - '}
+                    <Typography component="span" variant="body1" color="textPrimary">
+                        {message?.body}
+                    </Typography> 
+                </React.Fragment>
+                }/>
             </ListItem>
         );
     }
@@ -47,17 +57,18 @@ class Messages extends Component {
     showSystemMessage(message) {
         return (
             <ListItem>
-                <ListItemText primary={
+                <ListItemText 
+                primary={
                     <React.Fragment>
-                <Typography 
-                style={{ textAlign:'center',padding:'0.5vh 0 0.5vh 0'}}
-                component="div" 
-                variant="body2" 
-                color="textSecondary">
-                {message?.body}
-                </Typography> 
+                        <Typography 
+                        style={{ textAlign:'center',padding:'0.5vh 0 0.5vh 0'}}
+                        component="div" 
+                        variant="body2" 
+                        color="textSecondary">
+                        {message?.body}
+                        </Typography> 
                     </React.Fragment>
-                    }/>
+                }/>
             </ListItem>
 
         );
