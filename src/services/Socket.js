@@ -4,7 +4,7 @@ import socketIOClient from 'socket.io-client';
 class Socket {
 
     constructor() {
-        this.server_url = process.env.SERVER_URL || 'http://localhost:8001/';
+        this.server_url = process.env.REACT_APP_SERVER_URL || 'http://localhost:8001/';
         this.socket = socketIOClient(this.server_url);
     }
 

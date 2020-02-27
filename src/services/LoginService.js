@@ -2,7 +2,7 @@ import axios from 'axios';
 
 class LoginService {
     constructor(){
-        this.base_url = (process.env.SERVER_URL || 'http://localhost:8001/');
+        this.base_url = (process.env.REACT_APP_SERVER_URL || 'http://localhost:8001/');
     }
 
     userLogin(nickname, success,fail) {
